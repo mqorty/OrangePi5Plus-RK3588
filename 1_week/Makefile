@@ -1,6 +1,5 @@
 # ============ 1. 工具链 ============
-# 本地编译（在板子上练）用 gcc；
-# 交叉编译（在 PC 上）用下面这行，编译时加 make CROSS=1 即可切换。
+# 交叉编译（在 PC 上）时加 make CROSS=1 即可切换。
 CROSS ?= 0
 ifeq ($(CROSS),1)
 CC      = aarch64-linux-gnu-gcc
@@ -37,8 +36,3 @@ $(OBJS): greet.h
 .PHONY: all clean
 clean:
 	rm -f $(OBJS) $(TARGET)
-
-# 装到板子（PC 上交叉编译后执行）：make install BOARD=orangepi@172.16.5.150
-.PHONY: install
-install: $(TARGET)
-	scp $(TARGET) $(BOARD):~/
