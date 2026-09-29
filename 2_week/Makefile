@@ -1,4 +1,3 @@
-# 沿用第一周的 Makefile 结构
 CROSS ?= 0
 ifeq ($(CROSS),1)
 CC = aarch64-linux-gnu-gcc
@@ -8,14 +7,16 @@ endif
 
 CFLAGS = -Wall -Wextra -O2 -std=c11
 
-all: cat cp
+# 所有要编译的程序列表
+PROGS := cat cp mytouch filesize cpwithcheck
 
-cat: cat.c
-	$(CC) $(CFLAGS) -o $@ $<
+all: $(PROGS)
 
-cp: cp.c
+# 模式规则：任何 % 目标，依赖 %.c，编译命令统一写一次
+%: %.c
 	$(CC) $(CFLAGS) -o $@ $<
 
 .PHONY: all clean
 clean:
-	rm -f cat cp
+	rm -f $(PROGS)
+
