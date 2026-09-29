@@ -3,7 +3,7 @@
 
 void greet(const char *name)
 {
-    printf("Hello, %s! 来自嵌入式 Linux 的问候。\n", name);
+    printf("Hello, %s! Greetings from embedded linux developemnt.\n", name);
 }
 
 const char *version(void)
